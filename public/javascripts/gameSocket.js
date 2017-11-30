@@ -26,6 +26,6 @@ socket.on('setId', function(id){
 });
 
 socket.on('allPlayerLocations', function(players) {
-  console.log('rec all locations', players)
+  // console.log('rec all locations', players)
   opponents = players;
 })

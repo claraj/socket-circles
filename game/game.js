@@ -7,8 +7,8 @@ function init(io) {
 
     console.log('someone connected', socket.id);
     io.sockets.emit('allPlayerLocations', players);  // send to everyone.
-    socket.emit('setId', socket.id);   // send only  to the thing that connected
-    players[socket.id] = null; // placeholder
+    socket.emit('setId', socket.id);   // send only to the thing that connected
+    players[socket.id] = null; // placeholder until the player updates with their full info
 
 
     socket.on('clientStart', function(player){
@@ -21,25 +21,21 @@ function init(io) {
       players[player.id] = player;
       io.sockets.emit('allPlayerLocations', players);
 
-      console.log('player pos ', players)
     })
+
 
     socket.on('playerEaten', function(player){
       // remove player from players object
       console.log('player was eaten', player);
       delete players[player.id];
       io.sockets.emit('allPlayerLocations', players);
+
     })
 
+    // Delete this player
     socket.on('disconnect', function() {
-  //      socket.emit('destroyPlayer', "todo")
-
-          delete players[socket.id];
+        delete players[socket.id];
     });
-
-
-
-
 
   })
 
