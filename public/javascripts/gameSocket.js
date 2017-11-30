@@ -29,3 +29,8 @@ socket.on('allPlayerLocations', function(players) {
   // console.log('rec all locations', players)
   opponents = players;
 })
+
+socket.on('atMaxPlayers', function(players){
+  message('Reached max players for multiplayer')
+  preventStart()
+})

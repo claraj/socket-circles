@@ -196,3 +196,8 @@ function message(msg) {
     span.innerHTML = "";
   }
 }
+
+
+function preventStart() {
+    clearInterval(interval);  //stop the setInterval method ticking, stop game
+}

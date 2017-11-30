@@ -1,14 +1,25 @@
 
 var players = {};   // dict of id + player obj
 
+const MAX_PLAYERS = 5;
+
 function init(io) {
 
   io.on('connect', function(socket){
 
     console.log('someone connected', socket.id);
     io.sockets.emit('allPlayerLocations', players);  // send to everyone.
-    socket.emit('setId', socket.id);   // send only to the thing that connected
-    players[socket.id] = null; // placeholder until the player updates with their full info
+
+    if (Object.keys(players).length < MAX_PLAYERS) {
+
+      socket.emit('setId', socket.id);   // send only to the thing that connected
+      players[socket.id] = null; // placeholder until the player updates with their full info
+
+    }
+
+    else {
+      socket.emit('atMaxPlayers');
+    }
 
 
     socket.on('clientStart', function(player){

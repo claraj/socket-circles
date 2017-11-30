@@ -14,6 +14,7 @@ Many, many todo tasks. In no particular order...
 * don't create new user on top of other users, check for a free space on the game board
 * many other things
 * scores, save high scores, high score table
+* deal with max number of players better, instead of current hacky method
 
 Live version at
 [https://socket-circles.herokuapp.com/](https://socket-circles.herokuapp.com/)
